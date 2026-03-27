@@ -7,7 +7,7 @@
 
 **As a** [role/actor], **I want to** [capability] **so that** [business value/benefit].
 
-**Status:** [Pending | Implemented]
+**Status:** [Draft | Approved | Implemented]
 **Date:** [YYYY-MM-DD]
 
 ---
@@ -44,7 +44,7 @@
 
 ## Tests
 
-> Write UI tests that verify the acceptance criteria above. See `architecture.md` § Testing for conventions.
+> Write browserless tests that verify the acceptance criteria above. See `architecture.md` § Testing for conventions.
 
 - [ ] [Test class name — e.g., `BrowseMoviesTest`]
 - [ ] [What each test covers — map to acceptance criteria and business rules]

@@ -1,17 +1,18 @@
-# My Application README
+# Tournament Bracket README
 
-- [ ] TODO Replace or update this README with instructions relevant to your application
 
-## Build & Run Commands
+To start the application in development mode, import it into your IDE and run the `Application` class.
+You can also start the application from the command line by running:
 
 ```bash
-./mvnw                            # Run in dev mode (default goal: spring-boot:run)
-./mvnw clean package              # Production build (JAR in target/)
-./mvnw test                       # Run all tests
-./mvnw test -Dtest=ClassName      # Run a single test class
+./mvnw
 ```
 
-The app runs on port 8080 (configurable via `PORT` env var).
+To build the application in production mode, run:
+
+```bash
+./mvnw package
+```
 
 To build a Docker image, run:
 

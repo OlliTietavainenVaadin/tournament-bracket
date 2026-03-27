@@ -1,13 +1,22 @@
 # CLAUDE.md
 
+## Build & Run Commands
+
+```bash
+./mvnw                            # Run in dev mode (default goal: spring-boot:run)
+./mvnw clean package              # Production build (JAR in target/)
+./mvnw test                       # Run all tests
+./mvnw test -Dtest=ClassName      # Run a single test class
+```
+
+The app runs on port 8080 (configurable via `PORT` env var).
+
 ## Specifications
 
 Project specs live in `spec/`. Read [`spec/README.md`](spec/README.md) first.
 
-## Implementing a Use Case
-
-Read and follow every step in `spec/skills/use-case-implementation.md`. **Do not commit or move on to the next use case until all steps are done.**
-
 ## Guardrails
 
-See guardrails in `spec/architecture.md` and `spec/README.md`.
+- Do not modify `pom.xml` without asking
+- Do not modify `vite.config.ts` without asking
+- Do not modify `spec/architecture.md` without asking
