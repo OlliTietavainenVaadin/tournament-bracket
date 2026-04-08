@@ -1,1 +1,231 @@
-/* Add your styles here */
+/* === Tournament Bracket Styles === */
+
+.bracket-view {
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.tournament-header {
+    text-align: center;
+    margin-bottom: var(--vaadin-gap-l);
+}
+
+.tournament-title {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    margin: 0 0 var(--vaadin-gap-xs) 0;
+}
+
+.tournament-description {
+    color: var(--vaadin-text-color-secondary);
+    font-size: var(--aura-font-size-s);
+    margin: 0;
+}
+
+/* Bracket container */
+.bracket {
+    display: flex;
+    align-items: stretch;
+    min-height: 500px;
+    width: 100%;
+    overflow-x: auto;
+    padding: var(--vaadin-padding-m);
+}
+
+/* Round columns */
+.round {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.round-header {
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+    text-align: center;
+    color: var(--vaadin-text-color-secondary);
+    margin: 0 0 var(--vaadin-gap-s) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.round-matches {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Match wrappers — equal flex distribution */
+.match-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--vaadin-padding-xs) 0;
+}
+
+/* Match card */
+.match-card {
+    background: var(--aura-surface-color);
+    border: 1px solid var(--vaadin-border-color-secondary);
+    border-radius: var(--vaadin-radius-m);
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Remove border-radius and border on connecting sides for seamless connector lines */
+.has-next .match-card {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.has-prev .match-card {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.match-separator {
+    height: 1px;
+    background: var(--vaadin-border-color-secondary);
+}
+
+/* Player slot */
+.player-slot {
+    padding: var(--vaadin-padding-xs) var(--vaadin-padding-s);
+    display: flex;
+    align-items: center;
+    gap: var(--vaadin-gap-xs);
+}
+
+.player-name {
+    font-size: var(--aura-font-size-s);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-tbd {
+    color: var(--vaadin-text-color-disabled);
+    font-style: italic;
+}
+
+.player-winner {
+    background: color-mix(in srgb, var(--aura-green) 12%, transparent);
+}
+
+.player-winner .player-name {
+    font-weight: var(--aura-font-weight-semibold);
+    color: var(--aura-green-text);
+}
+
+/* Connector columns */
+.connector-column {
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+}
+
+.connector-header-spacer {
+    visibility: hidden;
+}
+
+.connector-groups {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.connector-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.connector-spacer {
+    flex: 1;
+}
+
+.connector-bracket {
+    flex: 2;
+    width: 50%;
+    border-top: 1px solid var(--vaadin-border-color-secondary);
+    border-bottom: 1px solid var(--vaadin-border-color-secondary);
+    border-right: 1px solid var(--vaadin-border-color-secondary);
+}
+
+/* Exit line from connector midpoint toward next round */
+.connector-group::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: 0;
+    border-top: 1px solid var(--vaadin-border-color-secondary);
+}
+
+/* Winner display */
+.winner-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--vaadin-padding-m);
+    min-width: 120px;
+}
+
+.winner-label {
+    font-size: var(--aura-font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--vaadin-text-color-secondary);
+    margin-bottom: var(--vaadin-gap-xs);
+}
+
+.winner-name {
+    font-size: var(--aura-font-size-l);
+    font-weight: var(--aura-font-weight-semibold);
+    color: var(--aura-green-text);
+}
+
+/* === Tournament List Styles === */
+
+.tournament-list-view {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tournament-list-title {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    margin: 0 0 var(--vaadin-gap-l) 0;
+}
+
+.tournament-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--vaadin-gap-m);
+}
+
+.tournament-list-card {
+    background: var(--aura-surface-color);
+    border: 1px solid var(--vaadin-border-color-secondary);
+    border-radius: var(--vaadin-radius-m);
+    padding: var(--vaadin-padding-m);
+}
+
+.tournament-list-link {
+    font-size: var(--aura-font-size-m);
+    font-weight: var(--aura-font-weight-semibold);
+}
+
+.tournament-list-description {
+    color: var(--vaadin-text-color-secondary);
+    font-size: var(--aura-font-size-s);
+    margin: var(--vaadin-gap-xs) 0 0 0;
+}

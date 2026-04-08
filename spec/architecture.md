@@ -7,6 +7,7 @@
 ## 1. Technology Stack
 
 - Vaadin — server-side Java UI for all views
+  - Consider alternative implementations like React views, custom Web Components, or SVG *if* the Java approach is not appropriate or does not produce adequate results
 - Spring Boot — auto-configuration, embedded Tomcat
 - Java
 - Maven (wrapper included)

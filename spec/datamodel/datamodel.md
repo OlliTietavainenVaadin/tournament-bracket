@@ -15,10 +15,11 @@
 
 ### Tournament
 | Field           | Type        | Constraints |
-|-----------------|-------------|------------|
+|-----------------|-------------|-----------|
 | id              | Long        | PK, auto-generated |
 | title           | String      | Required, max 200 |
 | description     | String      | Optional, max 2000 |
+| startDate       | Date        | Optional |
 | maxParticipants | Integer     | Required, > 0 |
 | winner          | Participant | Optional |
 
