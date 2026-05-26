@@ -2,6 +2,9 @@ package com.example.specdriven.bracket;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,10 +30,14 @@ public class Tournament {
 
     private Integer maxParticipants;
 
+    @Enumerated(EnumType.STRING)
+    private TournamentStatus status = TournamentStatus.CREATED;
+
     @OneToOne
     private Participant winner;
 
-    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Participant> participants = new ArrayList<>();
 
     @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -51,6 +58,9 @@ public class Tournament {
     public Integer getMaxParticipants() { return maxParticipants; }
     public void setMaxParticipants(Integer maxParticipants) { this.maxParticipants = maxParticipants; }
 
+    public TournamentStatus getStatus() { return status; }
+    public void setStatus(TournamentStatus status) { this.status = status; }
+
     public Participant getWinner() { return winner; }
     public void setWinner(Participant winner) { this.winner = winner; }
 
@@ -59,4 +69,16 @@ public class Tournament {
 
     public List<Fixture> getFixtures() { return fixtures; }
     public void setFixtures(List<Fixture> fixtures) { this.fixtures = fixtures; }
+
+    public long acceptedParticipantCount() {
+        return participants.stream()
+                .filter(p -> p.getRegistrationStatus() == RegistrationStatus.ACCEPTED)
+                .count();
+    }
+
+    public long pendingParticipantCount() {
+        return participants.stream()
+                .filter(p -> p.getRegistrationStatus() == RegistrationStatus.PENDING)
+                .count();
+    }
 }

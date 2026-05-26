@@ -19,7 +19,8 @@ A tournament bracket management web application that allows hosts to create and 
 
 - **Database:** H2 (embedded, file-based in dev; in-memory for tests)
 - **Authentication:** Spring Security — admin and user routes require login; public routes are open
-- **Limited participant number** — Minimum of 3 and maximum of 64 participants/teams in each tournament 
+- **Pre-seeded users for the demo:** one admin (`admin` / `admin`, role `ADMIN`) and twenty player accounts (`player1`/`player1` … `player20`/`player20`, role `USER`), defined in-memory so the demo can be exercised from multiple browser sessions without manual provisioning.
+- **Limited participant number** — Minimum of 3 and maximum of 32 participants per tournament (single-admin demo scale; ~two dozen players in total).
 - **Single elimination 2-competitor tournament only** Winner always progresses and loser is always eliminated
 - **Chess** Start with a Chess tournament example for demo and testing
 ---

@@ -1,6 +1,8 @@
 package com.example.specdriven.bracket;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +17,10 @@ public class Participant {
 
     private String name;
 
-    private String image;
+    private String username;
+
+    @Enumerated(EnumType.STRING)
+    private RegistrationStatus registrationStatus = RegistrationStatus.PENDING;
 
     @ManyToOne
     private Tournament tournament;
@@ -26,8 +31,13 @@ public class Participant {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public String getImage() { return image; }
-    public void setImage(String image) { this.image = image; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+
+    public RegistrationStatus getRegistrationStatus() { return registrationStatus; }
+    public void setRegistrationStatus(RegistrationStatus registrationStatus) {
+        this.registrationStatus = registrationStatus;
+    }
 
     public Tournament getTournament() { return tournament; }
     public void setTournament(Tournament tournament) { this.tournament = tournament; }

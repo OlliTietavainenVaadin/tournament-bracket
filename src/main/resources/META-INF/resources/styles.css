@@ -12,6 +12,14 @@
     margin-bottom: var(--vaadin-gap-l);
 }
 
+.tournament-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--vaadin-gap-s);
+    flex-wrap: wrap;
+}
+
 .tournament-title {
     font-size: var(--aura-font-size-xl);
     font-weight: var(--aura-font-weight-semibold);
@@ -57,7 +65,6 @@
     flex: 1;
 }
 
-/* Match wrappers — equal flex distribution */
 .match-wrapper {
     flex: 1;
     display: flex;
@@ -66,7 +73,6 @@
     padding: var(--vaadin-padding-xs) 0;
 }
 
-/* Match card */
 .match-card {
     background: var(--aura-surface-color);
     border: 1px solid var(--vaadin-border-color-secondary);
@@ -75,7 +81,6 @@
     overflow: hidden;
 }
 
-/* Remove border-radius and border on connecting sides for seamless connector lines */
 .has-next .match-card {
     border-right: none;
     border-top-right-radius: 0;
@@ -93,7 +98,6 @@
     background: var(--vaadin-border-color-secondary);
 }
 
-/* Player slot */
 .player-slot {
     padding: var(--vaadin-padding-xs) var(--vaadin-padding-s);
     display: flex;
@@ -158,7 +162,6 @@
     border-right: 1px solid var(--vaadin-border-color-secondary);
 }
 
-/* Exit line from connector midpoint toward next round */
 .connector-group::after {
     content: '';
     position: absolute;
@@ -192,6 +195,74 @@
     color: var(--aura-green-text);
 }
 
+/* === Participant list (for tournaments not yet started) === */
+
+.participant-list {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.participant-list-notice {
+    color: var(--vaadin-text-color-secondary);
+    margin-bottom: var(--vaadin-gap-m);
+}
+
+.participant-list-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vaadin-gap-s);
+    justify-content: center;
+}
+
+.participant-list-item {
+    background: var(--aura-surface-color);
+    border: 1px solid var(--vaadin-border-color-secondary);
+    border-radius: var(--vaadin-radius-m);
+    padding: var(--vaadin-padding-xs) var(--vaadin-padding-m);
+    font-size: var(--aura-font-size-s);
+}
+
+.participant-list-empty {
+    color: var(--vaadin-text-color-secondary);
+    font-style: italic;
+}
+
+/* === Status Badges === */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--vaadin-padding-s);
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-xs);
+    font-weight: var(--aura-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+}
+
+.status-badge.status-open-for-registrations {
+    background: color-mix(in srgb, var(--aura-blue) 16%, transparent);
+    color: var(--aura-blue-text);
+}
+
+.status-badge.status-ongoing {
+    background: color-mix(in srgb, var(--aura-orange) 16%, transparent);
+    color: var(--aura-orange-text);
+}
+
+.status-badge.status-finished {
+    background: color-mix(in srgb, var(--aura-green) 16%, transparent);
+    color: var(--aura-green-text);
+}
+
+.status-badge.status-created {
+    background: color-mix(in srgb, var(--aura-grey) 16%, transparent);
+    color: var(--vaadin-text-color-secondary);
+}
+
 /* === Tournament List Styles === */
 
 .tournament-list-view {
@@ -217,6 +288,16 @@
     border: 1px solid var(--vaadin-border-color-secondary);
     border-radius: var(--vaadin-radius-m);
     padding: var(--vaadin-padding-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--vaadin-gap-xs);
+}
+
+.tournament-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--vaadin-gap-m);
 }
 
 .tournament-list-link {
@@ -227,5 +308,192 @@
 .tournament-list-description {
     color: var(--vaadin-text-color-secondary);
     font-size: var(--aura-font-size-s);
-    margin: var(--vaadin-gap-xs) 0 0 0;
+    margin: 0;
+}
+
+.tournament-list-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vaadin-gap-m);
+    margin-top: var(--vaadin-gap-xs);
+}
+
+.tournament-list-meta-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.tournament-list-meta-label {
+    font-size: var(--aura-font-size-xs);
+    color: var(--vaadin-text-color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tournament-list-meta-value {
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.tournament-list-empty {
+    color: var(--vaadin-text-color-secondary);
+    font-style: italic;
+}
+
+/* === Admin views === */
+
+.admin-view,
+.manage-tournaments-view,
+.review-registrations-view,
+.record-results-view,
+.signup-view {
+    padding: var(--vaadin-padding-l);
+}
+
+.admin-nav {
+    list-style: none;
+    padding-left: 0;
+}
+
+.manage-toolbar {
+    flex-wrap: wrap;
+    gap: var(--vaadin-gap-s);
+}
+
+.review-title {
+    font-size: var(--aura-font-size-l);
+    margin-bottom: 0;
+}
+
+.review-counts {
+    color: var(--vaadin-text-color-secondary);
+    font-weight: var(--aura-font-weight-medium);
+    margin-top: var(--vaadin-gap-xs);
+}
+
+/* === Sign-up view === */
+
+.signup-title {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    margin: 0 0 var(--vaadin-gap-s) 0;
+}
+
+.signup-status {
+    color: var(--aura-green-text);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.signup-full {
+    color: var(--vaadin-text-color-disabled);
+    font-style: italic;
+}
+
+/* === Record Results view === */
+
+.results-title {
+    font-size: var(--aura-font-size-xl);
+    margin-bottom: var(--vaadin-gap-xs);
+}
+
+.results-finished {
+    color: var(--aura-green-text);
+    font-weight: var(--aura-font-weight-semibold);
+    margin-bottom: var(--vaadin-gap-s);
+}
+
+.results-rounds {
+    display: flex;
+    gap: var(--vaadin-gap-l);
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: var(--vaadin-gap-m);
+}
+
+.results-round {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+    gap: var(--vaadin-gap-s);
+}
+
+.results-round-header {
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--vaadin-text-color-secondary);
+    margin: 0;
+}
+
+.results-fixture {
+    background: var(--aura-surface-color);
+    border: 1px solid var(--vaadin-border-color-secondary);
+    border-radius: var(--vaadin-radius-m);
+    padding: var(--vaadin-padding-s);
+    display: flex;
+    flex-direction: column;
+    gap: var(--vaadin-gap-xs);
+}
+
+.results-slot {
+    padding: var(--vaadin-padding-xs) var(--vaadin-padding-s);
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+}
+
+.results-slot.results-winner {
+    background: color-mix(in srgb, var(--aura-green) 12%, transparent);
+    color: var(--aura-green-text);
+    font-weight: var(--aura-font-weight-semibold);
+}
+
+.results-tbd {
+    color: var(--vaadin-text-color-disabled);
+    font-style: italic;
+}
+
+.results-winner-label {
+    font-size: var(--aura-font-size-xs);
+    color: var(--aura-green-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--vaadin-gap-xs);
+}
+
+.results-pending {
+    font-size: var(--aura-font-size-xs);
+    color: var(--vaadin-text-color-secondary);
+    font-style: italic;
+}
+
+.results-win-button {
+    width: 100%;
+}
+
+/* === Main Layout (top navbar) === */
+.main-layout-navbar {
+    padding: 0 var(--vaadin-padding-m);
+    box-sizing: border-box;
+}
+
+.main-layout-title {
+    font-size: var(--aura-font-size-l);
+    font-weight: var(--aura-font-weight-semibold);
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-layout-session {
+    gap: var(--vaadin-gap-s);
+}
+
+.main-layout-username {
+    color: var(--vaadin-text-color-secondary);
+    font-size: var(--aura-font-size-s);
+}
+
+.main-layout-login {
+    text-decoration: none;
+    font-size: var(--aura-font-size-s);
 }

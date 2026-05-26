@@ -54,16 +54,29 @@ public class BracketView extends VerticalLayout implements BeforeEnterObserver {
         }
 
         buildHeader(tournament);
-        buildBracket(tournament);
+        TournamentStatus status = tournament.getStatus();
+        if (status == TournamentStatus.ONGOING || status == TournamentStatus.FINISHED) {
+            buildBracket(tournament);
+        } else {
+            buildParticipantList(tournament);
+        }
     }
 
     private void buildHeader(Tournament tournament) {
         H1 title = new H1(tournament.getTitle());
         title.addClassName("tournament-title");
 
+        Span statusBadge = new Span(tournament.getStatus().displayLabel());
+        statusBadge.addClassName("status-badge");
+        statusBadge.addClassName(statusClass(tournament.getStatus()));
+
         Div header = new Div();
         header.addClassName("tournament-header");
-        header.add(title);
+
+        Div titleRow = new Div();
+        titleRow.addClassName("tournament-header-row");
+        titleRow.add(title, statusBadge);
+        header.add(titleRow);
 
         if (tournament.getDescription() != null && !tournament.getDescription().isEmpty()) {
             Paragraph description = new Paragraph(tournament.getDescription());
@@ -72,6 +85,36 @@ public class BracketView extends VerticalLayout implements BeforeEnterObserver {
         }
 
         add(header);
+    }
+
+    private void buildParticipantList(Tournament tournament) {
+        Div container = new Div();
+        container.addClassName("participant-list");
+
+        Paragraph notice = new Paragraph(
+                "Bracket will be revealed once the tournament starts. Accepted players so far:");
+        notice.addClassName("participant-list-notice");
+        container.add(notice);
+
+        Div items = new Div();
+        items.addClassName("participant-list-items");
+        tournament.getParticipants().stream()
+                .filter(p -> p.getRegistrationStatus() == RegistrationStatus.ACCEPTED)
+                .forEach(p -> {
+                    Div item = new Div();
+                    item.addClassName("participant-list-item");
+                    item.add(new Span(p.getName()));
+                    items.add(item);
+                });
+        container.add(items);
+
+        if (tournament.acceptedParticipantCount() == 0) {
+            Paragraph empty = new Paragraph("No accepted players yet.");
+            empty.addClassName("participant-list-empty");
+            container.add(empty);
+        }
+
+        add(container);
     }
 
     private void buildBracket(Tournament tournament) {
@@ -87,7 +130,6 @@ public class BracketView extends VerticalLayout implements BeforeEnterObserver {
                     .sorted(Comparator.comparingInt(Fixture::getPosition))
                     .toList();
 
-            // Round column
             Div roundColumn = new Div();
             roundColumn.addClassName("round");
 
@@ -115,13 +157,11 @@ public class BracketView extends VerticalLayout implements BeforeEnterObserver {
             roundColumn.add(matchesContainer);
             bracket.add(roundColumn);
 
-            // Connector column between rounds
             if (round < totalRounds) {
                 bracket.add(createConnectorColumn(roundFixtures.size()));
             }
         }
 
-        // Winner display
         if (tournament.getWinner() != null) {
             Div winnerDisplay = new Div();
             winnerDisplay.addClassName("winner-display");
@@ -176,7 +216,6 @@ public class BracketView extends VerticalLayout implements BeforeEnterObserver {
         Div column = new Div();
         column.addClassName("connector-column");
 
-        // Invisible spacer matching round header height for vertical alignment
         Html headerSpacer = new Html(
                 "<h3 class='round-header connector-header-spacer'>&nbsp;</h3>");
         column.getElement().appendChild(headerSpacer.getElement());
@@ -213,5 +252,9 @@ public class BracketView extends VerticalLayout implements BeforeEnterObserver {
             case 2 -> "Quarterfinals";
             default -> "Round " + round;
         };
+    }
+
+    private static String statusClass(TournamentStatus status) {
+        return "status-" + status.name().toLowerCase().replace('_', '-');
     }
 }
